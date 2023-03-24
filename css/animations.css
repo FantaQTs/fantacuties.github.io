@@ -1,0 +1,259 @@
+@keyframes flappyDragon {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes dragonSwing {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(0.5deg) translateY(-2px);
+  }
+}
+
+@keyframes dragonSwingReverse {
+  0%, 100% {
+    transform: rotateX(0deg) rotateY(180deg) translateY(0px);
+  }
+  50% {
+    transform: rotateX(0.5deg) rotateY(180deg) translateY(-2px);
+  }
+}
+
+@keyframes dragonForward {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes wavingFlag {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes flipPage {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes cutiesRoll {
+  from {
+      transform: translate3d(0, 0, 0);
+  }
+  to {
+      transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes cutiesRoll2 {
+  from {
+      transform: translate3d(100%, 0, 0);
+  }
+  to {
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes waveMotion {
+  from {
+      transform: translate3d(0, 0, 0);
+  }
+  to {
+      transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes waveMotion2 {
+  from {
+      transform: translate3d(100%, 0, 0);
+  }
+  to {
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes boredFish {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fishSwing {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes fishForward {
+  from {
+      left: -10%;
+  }
+  to {
+      left: 100%;
+  }
+}
+
+@keyframes shyClam {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  2% {
+    transform: translate3d(0, -87.5%, 0);
+  }
+  50% {
+    transform: translate3d(0, -87.5%, 0);
+  }
+  52% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes leftStep {
+  0%, 100% {
+    transform: translate3d(0, -4px, 0);
+  }
+  50% {
+    transform: translate3d(0, 4px, 0);
+  }
+}
+
+@keyframes rightStep {
+  0%, 100% {
+    transform: translate3d(0, 4px, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes walk {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes blazingMantle {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@keyframes downSword {
+  0%, 100% {
+    transform: translate3d(0, -4px, 0);
+  }
+  50% {
+    transform: translate3d(0, 4px, 0);
+  }
+}
+
+@keyframes leftSword {
+  0%, 100% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  50% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes rightSword {
+  0%, 100% {
+    transform: rotateY(180deg) translate3d(-4px, 0, 0);
+  }
+  50% {
+    transform: rotateY(180deg) translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes popUp {
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 1);
+  }
+  75% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes notificationPopUp {
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+  6.7% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  10% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  96.7% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+}
+
+@keyframes statusPopUp {
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+  1% {
+    opacity: 1;
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  1.5% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  14.5% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  15% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+}

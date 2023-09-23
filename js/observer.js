@@ -27,7 +27,7 @@ const observer = new IntersectionObserver(entries => {
 });
 
 document.querySelectorAll(
-  ".icon, .doodle, .message, #user-status, .title, .button, .traveler, .feature, .value, .question"
+  ".icon, .doodle, .message, .title, .button, .traveler, .feature, .value, .question"
 ).forEach((i) => {
   observer.observe(i);
 });

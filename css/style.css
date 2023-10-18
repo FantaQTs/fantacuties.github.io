@@ -368,7 +368,7 @@ section.container, .traits.container, .trait-values.container,
 }
 
 #os-link {
-  padding: 2.5vw;
+  padding: 2.5vw 0;
 }
 
 .button {
@@ -1207,7 +1207,7 @@ section.container, .traits.container, .trait-values.container,
   }
 
   #os-link {
-    padding: 3.5vw;
+    padding: 3.5vw 0;
   }
 
   .button {
@@ -1438,7 +1438,7 @@ section.container, .traits.container, .trait-values.container,
   }
 
   #os-link {
-    padding: 3.5vw;
+    padding: 3.5vw 0;
   }
 
   .button {
@@ -1658,7 +1658,7 @@ section.container, .traits.container, .trait-values.container,
   }
 
   #os-link {
-    padding: 2.5vw;
+    padding: 2.5vw 0;
   }
 
   .button {

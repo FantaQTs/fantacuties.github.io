@@ -367,6 +367,10 @@ section.container, .traits.container, .trait-values.container,
   color: #cbd5ff;
 }
 
+#os-link {
+  padding: 2.5vw;
+}
+
 .button {
   padding: 2.5vw;
   border-radius: 1.5rem;
@@ -1202,6 +1206,10 @@ section.container, .traits.container, .trait-values.container,
     font-size: 12vw;
   }
 
+  #os-link {
+    padding: 3.5vw;
+  }
+
   .button {
     padding: 3.5vw;
     font-size: 3.5vw;
@@ -1429,6 +1437,10 @@ section.container, .traits.container, .trait-values.container,
     font-size: 14vw;
   }
 
+  #os-link {
+    padding: 3.5vw;
+  }
+
   .button {
     padding: 3.5vw;
     font-size: 3.5vw;
@@ -1643,6 +1655,10 @@ section.container, .traits.container, .trait-values.container,
     width: 67vw;
     height: 51vw;
     bottom: 7vw;
+  }
+
+  #os-link {
+    padding: 2.5vw;
   }
 
   .button {

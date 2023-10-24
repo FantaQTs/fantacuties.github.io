@@ -123,8 +123,8 @@ h4, p {
 }
 
 section.container, .questions.container, .question.container, 
-#navbar-toggle.container, .loading > .container, 
-.my-cuties > .container, .traits.container, .trait-values.container {
+#navbar-toggle.container, .my-cuties > .container, 
+.traits.container, .trait-values.container {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -132,8 +132,7 @@ section.container, .questions.container, .question.container,
 }
 
 .navbar.container, .warriors.container, .info.container, 
-.question .container, .my-cuties .browser.container,
-.loading .container .container {
+.question .container, .my-cuties .browser.container {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -180,8 +179,8 @@ section.container, .traits.container, .trait-values.container,
   gap: 1.1vw;
 }
 
-.tos.container, .loading > .container, 
-.my-cuties > .container, .cutie.container, .meta > .container {
+.tos.container, .my-cuties > .container, 
+.cutie.container, .meta > .container {
   gap: 2.2vw;
 }
 
@@ -1017,20 +1016,19 @@ section.container, .traits.container, .trait-values.container,
   margin-top: 1.5vh;
 }
 
-.loading, .my-cuties {
+.my-cuties {
   display: none;
   position: fixed;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.90);
 }
 
-.loading, .loading > .container,
 .my-cuties, .my-cuties > .container {
   inset: 0;
   margin: auto;
 }
 
-.loading > .container, .my-cuties > .container {
+.my-cuties > .container {
   position: absolute;
   padding: 2.5%;
   width: -webkit-fit-content;
@@ -1043,11 +1041,7 @@ section.container, .traits.container, .trait-values.container,
   background-color: #fff9d9;
 }
 
-.loading h2 {
-  font-size: 3vw;
-}
-
-.loading .button, .my-cuties .button {
+.my-cuties .button {
   padding: 1.5vw 2vw;
   border-radius: 1.2rem;
   background-color: #1f2024;
@@ -1060,15 +1054,7 @@ section.container, .traits.container, .trait-values.container,
   display: none;
 }
 
-.loading > .container {
-  width: 45%;
-}
-
 .my-cuties > .container {
-  width: 65%;
-}
-
-.loading .container .container {
   width: 65%;
 }
 
@@ -1120,6 +1106,16 @@ section.container, .traits.container, .trait-values.container,
   font-family: Gorditas;
   font-weight: 300;
   color: #fbeb9d;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('https://lkp.dispendik.surabaya.go.id/assets/loading.gif') 50% 50% no-repeat rgb(249,249,249);
 }
 
 @media (hover: hover) {
@@ -1324,15 +1320,11 @@ section.container, .traits.container, .trait-values.container,
     height: 8vw;
   }
 
-  .loading > .container {
-    width: 60%;
-  }
-
   .my-cuties > .container {
     width: 85%;
   }
 
-  .loading .button, .my-cuties .button {
+  .my-cuties .button {
     padding: 2.5vw 3vw;
     font-size: 2.5vw;
   }
@@ -1365,8 +1357,8 @@ section.container, .traits.container, .trait-values.container,
     gap: 2.1vw;
   }
 
-  .tos.container, .loading > .container, 
-  .my-cuties > .container, .cutie.container, .meta > .container {
+  .tos.container, .my-cuties > .container, 
+  .cutie.container, .meta > .container {
     gap: 3.2vw;
   }
 
@@ -1576,16 +1568,16 @@ section.container, .traits.container, .trait-values.container,
     gap: 2vw;
   }
 
-  .loading > .container, .my-cuties > .container {
+  .my-cuties > .container {
     padding: 5%;
     width: 75%;
   }
 
-  .loading .container .container, .my-cuties .browser {
+  .my-cuties .browser {
     width: 85%;
   }
 
-  .loading .button, .my-cuties .button {
+  .my-cuties .button {
     padding: 3.5vw 5vw;
     font-size: 3.5vw;
   }

@@ -1115,12 +1115,18 @@ section.container, .traits.container, .trait-values.container,
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: 50% 50% no-repeat #1E1F22;
-  padding: 30%;
+  background: #1E1F22;
 }
 
 .loading-logo {
-  background: url(../assets/loading/fqt_loading.gif) 50% 50% no-repeat #1E1F22;
+  display: block;
+  max-width: 25%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
 }
 
 @media (hover: hover) {

@@ -1343,6 +1343,11 @@ section.container, .traits.container, .trait-values.container,
   .cutie .asset img {
     width: 70%;
   }
+
+  .our-values .divider img {
+    -webkit-animation: none;
+    animation: none;
+  }
 }
 
 @media screen and (max-width: 576px) {

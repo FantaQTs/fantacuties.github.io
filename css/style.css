@@ -422,7 +422,6 @@ section.container, .traits.container, .trait-values.container,
 
 .flappy-dragon {
   overflow: hidden;
-  will-change: transform;
   -webkit-animation: dragonSwing 0.5s linear infinite;
           animation: dragonSwing 0.5s linear infinite;
 }
@@ -1237,6 +1236,17 @@ section.container, .traits.container, .trait-values.container,
     top: 72%;
   }
 
+  .description .container,
+  .fantacuties .divider div,
+  .our-values .divider div {
+  -webkit-animation: none;
+          animation: none;
+  }
+
+  .flappy-dragon {
+    display: none;
+  }
+
   .waving-flag {
     width: 42vw;
     height: 14vw;
@@ -1268,7 +1278,7 @@ section.container, .traits.container, .trait-values.container,
     width: 180%;
     height: 22vw;
   }
-
+  
   .features, .values {
     width: 90%;
   }

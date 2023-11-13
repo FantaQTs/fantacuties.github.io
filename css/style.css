@@ -422,6 +422,7 @@ section.container, .traits.container, .trait-values.container,
 
 .flappy-dragon {
   overflow: hidden;
+  will-change: transform;
   -webkit-animation: dragonSwing 0.5s linear infinite;
           animation: dragonSwing 0.5s linear infinite;
 }
@@ -1171,15 +1172,6 @@ section.container, .traits.container, .trait-values.container,
 }
 
 @media screen and (max-width: 992px) {
-  * {
-    -webkit-transition: none !important;
-    -moz-transition: none !important;
-    -o-transition: none !important;
-    -ms-transition: none !important;
-    transition: none !important;
-    animation-name: none;
-  }
-  
   h1 {
     font-size: 3.3vw;
   }
@@ -1325,6 +1317,11 @@ section.container, .traits.container, .trait-values.container,
 
   .feature, .value {
     padding: 2.5vw 3vw;
+  }
+
+  .our-values .divider img {
+    -webkit-animation: none;
+    animation: none;
   }
 
   .value, .questions {

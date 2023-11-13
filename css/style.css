@@ -1171,6 +1171,15 @@ section.container, .traits.container, .trait-values.container,
 }
 
 @media screen and (max-width: 992px) {
+  * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+    animation-name: none;
+  }
+  
   h1 {
     font-size: 3.3vw;
   }
@@ -1342,11 +1351,6 @@ section.container, .traits.container, .trait-values.container,
 
   .cutie .asset img {
     width: 70%;
-  }
-
-  .our-values .divider img {
-    -webkit-animation: none;
-    animation: none;
   }
 }
 

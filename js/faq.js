@@ -1,5 +1,5 @@
 const questions = document.querySelectorAll(".question");
-const cursors = document.querySelectorAll(".sword-fire");
+const cursors = document.querySelectorAll(".question .container img");
 const answers = document.querySelectorAll(".answer");
 let curQuestion = 0;
 

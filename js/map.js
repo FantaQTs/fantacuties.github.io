@@ -1,56 +1,58 @@
-const footstep = document.querySelector("#footstep");
-const traveler = document.querySelectorAll(".traveler img");
-const checkpoint = document.querySelector(".checkpoint img");
-const checkpointAll = document.querySelector(".checkpoint-all");
-const toggleCheckpoint = document.querySelector("#toggle-checkpoint");
-const mapMessage = document.querySelector(".map .message");
-const footstepMessage = document.querySelector(".footstep .message");
-let checkpointToggled = false;
-let mapMessageSeen = false;
+const walkMap = document.querySelector("#walk-map");
+const toggleAllCheckpoints = document.querySelector("#toggle-all-checkpoints");
+
+const traveler = document.querySelectorAll(".traveler > img");
+const checkpoints = document.querySelectorAll(".checkpoints > img");
+const allCheckpoints = checkpoints[checkpoints.length - 1];
+
+const messageToggleAllCheckpoints = document.querySelector(".map .message");
+const messageWalkMap = document.querySelector(".platform .message");
+
+let allCheckpointsToggled = false;
+let messageToggleAllCheckpointsSeen = false;
 let curCheckpoint = 1;
 
-toggleCheckpoint.addEventListener("click", () => {
-  if (!checkpointToggled) {
-    checkpointAll.classList.add("active");
+toggleAllCheckpoints.addEventListener("click", () => {
+  if (!allCheckpointsToggled) {
+    allCheckpoints.classList.add("active");
   } else {
-    checkpointAll.classList.remove("active");
+    allCheckpoints.classList.remove("active");
   }
-  checkpointToggled = !checkpointToggled;
+  allCheckpointsToggled = !allCheckpointsToggled;
 
   if (!mapMessageSeen) {
-    mapMessage.classList.add("seen");
-    mapMessage.classList.remove("popup");
-    mapMessageSeen = true;
+    messageToggleAllCheckpoints.classList.add("seen");
+    messageToggleAllCheckpoints.classList.remove("popup");
+    messageToggleAllCheckpointsSeen = true;
   }
 });
 
-footstep.addEventListener("click", () => {
-  checkpoint.classList.remove("active");
+walkMap.addEventListener("click", () => {
+  checkpoints[curCheckpoint-1].classList.remove("active");
+  traveler[curCheckpoint-1].classList = "";
 
   if (curCheckpoint == 6) {
     curCheckpoint = 0;
   }
 
-  footstep.disabled = true;
-
+  walkMap.disabled = true;
+  
   curCheckpoint += 1;
   traveler[curCheckpoint-1].classList.add("active");
-  traveler[curCheckpoint-1].classList.add(`walk-${curCheckpoint}`);
+  traveler[curCheckpoint-1].classList.add(`walk-map-${curCheckpoint}`);
 
-  if (!mapMessageSeen) {
-    [mapMessage, footstepMessage].forEach((e) => {
+  if (!messageToggleAllCheckpointsSeen) {
+    [messageToggleAllCheckpoints, messageWalkMap].forEach((e) => {
       e.classList.add("seen");
       e.classList.remove("popup");
     });
-    mapMessageSeen = true;
+    messageToggleAllCheckpointsSeen = true;
   }
 });
 
 traveler.forEach(t => {
   t.addEventListener("animationend", () => {
-    t.className = "";
-    checkpoint.style.transform = `translate3d(0, calc(-100%/6*${curCheckpoint-1}), 0)`;
-    checkpoint.classList.add("active");
-    footstep.disabled = false;
+    checkpoints[curCheckpoint-1].classList.add("active");
+    walkMap.disabled = false;
   });
 });

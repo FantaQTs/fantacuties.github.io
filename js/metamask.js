@@ -12,14 +12,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 });
 
 userAccount.addEventListener("click", async () => {
-  if (typeof window.ethereum == 'undefined') {
+  if (!window.ethereum) {
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       window.open("https://metamask.app.link/dapp/fantacuties.com");
       return;
     } else {
       onboarding.startOnboarding();
     };
-
   }
   const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
   console.log(accounts)

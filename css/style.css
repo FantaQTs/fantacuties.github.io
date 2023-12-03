@@ -483,6 +483,16 @@ h4, p {
   width: 2rem;
 }
 
+.minting input::-moz-range-thumb {
+  margin-top: -0.75rem;
+  background-image: url(../assets/hero/slider-logo.png);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 2rem;
+  width: 2rem;
+}
+
 @-webkit-keyframes cutiesSlideshow1 {
   from {
     -webkit-transform: translate3d(0, 0, 0);

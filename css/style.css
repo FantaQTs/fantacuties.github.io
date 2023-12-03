@@ -479,6 +479,7 @@ h4, p {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  background-color: #ffffff;
   height: 2rem;
   width: 2rem;
 }
@@ -489,6 +490,7 @@ h4, p {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  background-color: #ffffff;
   height: 2rem;
   width: 2rem;
 }

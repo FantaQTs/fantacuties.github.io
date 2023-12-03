@@ -51,6 +51,10 @@
   padding: 0;
 }
 
+*:focus {
+  outline: none;
+}
+
 html, body {
   width: 100vw;
   min-width: 100vw;
@@ -79,6 +83,24 @@ button, button:focus-visible, button:active {
   font-family: inherit;
   font-weight: inherit;
   cursor: pointer;
+}
+
+input {
+  display: block;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+	        appearance: none;
+	border: none;
+	outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
 }
 
 ul {
@@ -349,35 +371,116 @@ h4, p {
   background-image: linear-gradient(to bottom, #00356b 0%, #01579b 30%, #b19cd9 80%, #f2d1cb 100%);
 }
 
-.title, .button {
+.title, .notification, .minting button, .minting input {
   -webkit-transition: all 200ms ease;
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
 
 .title {
+  position: relative;
+  top: 3vw;
   width: 52vw;
   height: 13vw;
   -webkit-filter: drop-shadow(0 5px 2px rgba(31, 32, 36, 0.9));
           filter: drop-shadow(0 5px 2px rgba(31, 32, 36, 0.9));
 }
 
-.button {
+.notification {
+  position: relative;
+}
+
+.notification p {
+  display: inline-block;
+  visibility: hidden;
+  opacity: 0;
+  color: #ffe16b;
+}
+
+@-webkit-keyframes notify {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+  10%, 90% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes notify {
+  0%, 100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10px, 0);
+            transform: translate3d(0, 10px, 0);
+  }
+  10%, 90% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+  }
+}
+
+.notification p.active {
+  visibility: visible;
+  -webkit-animation: notify 10s ease-out;
+          animation: notify 10s ease-out;
+}
+
+.minting, .minting button {
   width: 20vw;
   height: 10vw;
+}
+
+.minting {
+  position: relative;
+}
+
+.minting button, .minting input {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 2;
+}
+
+.minting button {
+  bottom: 0;
+  overflow: hidden;
   line-height: 10vw;
   border-radius: 1.5rem;
   -webkit-box-shadow: 0 5px 2px rgba(31, 32, 36, 0.9);
           box-shadow: 0 5px 2px rgba(31, 32, 36, 0.9);
   font-size: 2vw;
   text-align: center;
+  color: #ffffff;
 }
 
-.hero .button {
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-  color: white;
+.minting input {
+  bottom: 20%;
+  width: 35%;
+}
+
+.minting input::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  background-color: #ffe16b;
+  border-radius: 1.5rem;
+}
+
+.minting input::-moz-range-track {
+  height: 0.5rem;
+  background-color: #ffe16b;
+  border-radius: 1.5rem;
+}
+
+.minting input::-webkit-slider-thumb {
+  margin-top: -0.75rem;
+  background-image: url(../assets/hero/slider-logo.png);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 2rem;
+  width: 2rem;
 }
 
 @-webkit-keyframes cutiesSlideshow1 {
@@ -1272,11 +1375,6 @@ h4, p {
   gap: 2.2vw;
 }
 
-#mint-dismiss, #mint-retry,
-#metamask-install-loading, #metamask-connect-loading {
-  display: none;
-}
-
 .privacy, .terms {
   padding: 5vw;
   background: #f2e390;
@@ -1304,12 +1402,12 @@ h4, p {
 }
 
 @media (hover: hover) {
-  .icon:hover {
+  .icon:hover, .icon:focus {
     -webkit-transform: scale3d(1.1, 1.1, 1.1);
             transform: scale3d(1.1, 1.1, 1.1);
   }
 
-  .title:hover {
+  .title:hover, .title:focus {
     -webkit-transform: translate(0px, -4px);
         -ms-transform: translate(0px, -4px);
             transform: translate(0px, -4px);
@@ -1317,7 +1415,7 @@ h4, p {
             filter: drop-shadow(0 6px 3px rgba(31, 32, 36, 0.9));
   }
 
-  .button:not(:disabled):hover {
+  .minting button:hover, .minting button:focus {
     -webkit-transform: translate(0px, -4px);
         -ms-transform: translate(0px, -4px);
             transform: translate(0px, -4px);
@@ -1325,7 +1423,13 @@ h4, p {
             box-shadow: 0 6px 3px rgba(31, 32, 36, 0.9);
   }
 
-  #walk-map:not(:disabled):hover {
+  .minting button:hover + input, .minting button:focus + input {
+    -webkit-transform: translate(0px, -4px);
+        -ms-transform: translate(0px, -4px);
+            transform: translate(0px, -4px);
+  }
+  
+  #walk-map:hover, #walk-map:focus {
     -webkit-transform: scale3d(1.1, 1.1, 1.1);
             transform: scale3d(1.1, 1.1, 1.1);
   }
@@ -1370,16 +1474,33 @@ h4, p {
     height: 17.5vw;
   }
 
-  .button {
+  .minting, .minting button {
     width: 30vw;
     height: 15vw;
+  }
+
+  .minting, .notification {
+    top: 2vw;
+  }
+
+  .minting button {
     line-height: 15vw;
     padding: 3.5vw;
     font-size: 3.5vw;
   }
 
-  .hero .button {
-    top: 2vw;
+  .minting input::-webkit-slider-runnable-track {
+    height: 0.4rem;
+  }
+  
+  .minting input::-moz-range-track {
+    height: 0.4rem;
+  }
+
+  .minting input::-webkit-slider-thumb {
+    margin-top: -0.7rem;
+    height: 1.8rem;
+    width: 1.8rem;
   }
 
   .doodle {
@@ -1587,19 +1708,32 @@ h4, p {
     height: 18vw;
   }
 
-  .button {
+  .minting, .minting button {
     width: 50vw;
     height: 25vw;
+  }
+  
+  .minting button {
     line-height: 25vw;
     padding: 3.5vw;
     font-size: 5vw;
     border-radius: 0.75rem;
   }
 
-  .hero .button {
-    margin-top: 2vw;
+  .minting input::-webkit-slider-runnable-track {
+    height: 0.2rem;
+  }
+  
+  .minting input::-moz-range-track {
+    height: 0.2rem;
   }
 
+  .minting input::-webkit-slider-thumb {
+    margin-top: -0.6rem;
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+  
   .description {
     top: 80%;
     width: 240%;
@@ -1637,10 +1771,6 @@ h4, p {
   .story .cuties > div, .story .cutie, .story .message {
     width: 18vw;
     height: 36vw;
-  }
-
-  .story .button {
-    font-size: 3vw;
   }
 
   .cutie-features .cuties {
@@ -1740,21 +1870,24 @@ h4, p {
 
   .title {
     position: relative;
-    top: 5vw;
+    top: 9vw;
     width: 60vw;
     height: 15vw;
   }
-
-  .button {
-    padding: 2.5vw;
-    font-size: 2vw;
-  }
-
-  .hero .button {
-    top: 7vw;
+  
+  .minting, .minting button {
     width: 24vw;
     height: 12vw;
+  }
+
+  .minting, .notification {
+    top: 7vw;
+  }
+
+  .minting button {
     line-height: 12vw;
+    padding: 2.5vw;
+    font-size: 2vw;
   }
 
   .description {
@@ -1780,91 +1913,3 @@ h4, p {
     top: 6vw;
   }
 }
-
-/*
-@media screen and not(-webkit-min-device-pixel-ratio: 0) and (prefers-color-scheme: dark) {
-  .hero {
-    background-image: linear-gradient(to bottom, #020111 10%,#3a3a52 100%)
-  }
-  
-  .hero .divider {
-    background-image: url(../assets/dividers/mountains-dark.svg)
-  }
-  
-  .story {
-    background-color: #0b1b26
-  }
-  
-  .story .divider {
-    background-image: url(../assets/dividers/desert-dark.svg)
-  }
-  
-  .lighting {
-    background-image: none;
-  }
-  
-  .cutie-features {
-    background-image: linear-gradient(to bottom, #202326 0%, #27292b 100%)
-  }
-  
-  .cutie-features .divider div {
-    background-image: url(../assets/dividers/sea-dark.svg)
-  }
-  
-  .roadmap {
-    background-image: linear-gradient(to bottom, #071932 0%, #000000 100%)
-  }
-  
-  .roadmap .divider {
-    background-image: url(../assets/dividers/seabed-dark.svg)
-  }
-  
-  .our-values {
-    background-image: linear-gradient(to bottom, #031702 0%, #021201 100%)
-  }
-  
-  .our-values .divider img {
-    content: url(../assets/animations/blazing-mantle-dark.svg);
-    min-width: 800%
-  }
-  
-  .faq {
-    background-color: #270a08
-  }
-  
-  .faq .divider {
-    background-image: url(../assets/dividers/core-dark.svg)
-  }
-  
-  .footer {
-    background-color: #000
-  }
-  h3, h4 {
-    color:grey
-  }
-
-  .roadmap .label h1 {
-    color: #000
-  }
-
-  .story .button {
-    background-image: linear-gradient(to bottom, #d5ca92 50%, #a28c56 100%)
-  }
-  
-  .hero .button {
-    background-color: #aaa2a2
-  }
-
-  .sword-fire {
-    background-image: url(../assets/icons/sword-fire-dark.svg);
-  }
-
-  .book {
-    background-image: url(../assets/story/book-dark.svg);
-  }
-
-  .map, .label, #footstep {
-    opacity: 0.7;
-  }
-}
-*/

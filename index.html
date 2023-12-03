@@ -54,7 +54,11 @@
     <div id="navbar-menu" aria-labelledby="navbar-toggle">
       <ul class="container">
         <li>
+<<<<<<< Updated upstream
           <input id="user-account" type="image" src="/assets/navbar/account-disabled.svg" class="icon">
+=======
+          <input id="connect" type="image" src="/assets/navbar/metamask-disconnected.png" class="icon">
+>>>>>>> Stashed changes
         </li>
         <li>
           <a href="https://opensea.io/collection/fantacuties" target="_blank">
@@ -81,14 +85,20 @@
   </nav>
   <section class="hero container">
     <img src="/assets/hero/title.png" class="title">
-    <button id="mint" type="submit" class="button">
-      <div class="cuties-slideshow">
-        <img src="/assets/hero/cuties-slideshow.png">
-        <img src="/assets/hero/cuties-slideshow.png">
-      </div>
-      <div class="overlay"></div>
-      <a href="https://opensea.io/collection/fantacuties" target="_blank">Mint now!</a>
-    </button>
+    <span class="notification">
+      <p id="notify"></p>
+    </span>
+    <div class="minting container">
+      <button id="mint">
+        <div class="cuties-slideshow">
+          <img src="/assets/hero/cuties-slideshow.png">
+          <img src="/assets/hero/cuties-slideshow.png">
+        </div>
+        <div class="overlay"></div>
+        <a>Mint 1 Cutie!</a>
+      </button>
+      <input type="range" id="token-amount" name="token-amount" min="1" max="10" step="1" value="1">
+    </div>
     <div class="description">
       <div class="container">
         <img src="/assets/hero/flappy-dragon.gif" class="flappy-dragon doodle">
@@ -288,11 +298,16 @@
   </script>
   <script src="/js/jquery/jquery-3.7.1.min.js"></script>
   <script>$(window).on('load', function(){$(".loading").fadeOut("slow");});</script>
+<<<<<<< Updated upstream
   <script src="/js/metamask/metamask-onboarding.bundle.js"></script>
   <script src="/js/metamask.js"></script>
+=======
+>>>>>>> Stashed changes
   <script src="/js/book.js"></script>
   <script src="/js/map.js"></script>
   <script src="/js/faq.js"></script>
   <script src="/js/observer.js"></script>
   <script src="/js/navbar-toggle.js"></script>
+  <script src="/js/ethers/ethers-5.2.umd.min.js"></script>
+  <script src="/js/wallet.js"></script>
 </body>

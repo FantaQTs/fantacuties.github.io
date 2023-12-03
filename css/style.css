@@ -453,7 +453,7 @@ h4, p {
           box-shadow: 0 5px 2px rgba(31, 32, 36, 0.9);
   font-size: 2vw;
   text-align: center;
-  color: transparent;
+  color: #ffffff;
 }
 
 .minting input {

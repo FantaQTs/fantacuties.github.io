@@ -27,9 +27,11 @@ const connectMetamask = async () => {
   }
 }
 
-window.ethereum.on("connect", async () => {
-  await connectMetamask();
-});
+if (typeof window.ethereum != "undefined") {
+  window.ethereum.on("connect", async () => {
+    await connectMetamask();
+  });
+}
 
 window.addEventListener("load", async () => {
   await connectMetamask();
@@ -41,9 +43,11 @@ const disconnectMetamask = async () => {
   connect.src = "../assets/navbar/metamask-disconnected.png";
 }
 
-window.ethereum.on("disconnect", async () => {
-  await disconnectMetamask();
-});
+if (typeof window.ethereum != "undefined") {
+  window.ethereum.on("disconnect", async () => {
+    await disconnectMetamask();
+  });
+}
 
 window.ethereum.on("accountsChanged", (accounts) => {
   const oldWalletAddress = walletAddress;

@@ -14,22 +14,22 @@ const connect = document.querySelector("#connect");
 let walletAddress;
 
 const connectMetamask = async () => {
-  if (window.ethereum) {
-    const accounts = await ethereum.request({method: 'eth_accounts'});
-    walletAddress = accounts[0];
-    if (typeof walletAddress == 'undefined') {
-      notifyUser(`Metamask not connected`);
-    } else {
-      notifyUser(`Metamask connected with address: ${walletAddress}`);
-      connect.src = "../assets/navbar/metamask-connected.png";
-    }
+  if (typeof window.ethereum == "undefined") return;
+
+  const accounts = await ethereum.request({method: 'eth_accounts'});
+  walletAddress = accounts[0];
+  
+  if (typeof walletAddress == "undefined") {
+    notifyUser("Metamask not connected");
+  } else {
+    notifyUser(`Metamask connected with address: ${walletAddress}`);
+    connect.src = "../assets/navbar/metamask-connected.png";
   }
 }
 
-if (window.ethereum)
-  window.ethereum.on("connect", async () => {
-    await connectMetamask();
-  });
+window.ethereum.on("connect", async () => {
+  await connectMetamask();
+});
 
 window.addEventListener("load", async () => {
   await connectMetamask();
@@ -41,28 +41,26 @@ const disconnectMetamask = async () => {
   connect.src = "../assets/navbar/metamask-disconnected.png";
 }
 
-if (window.ethereum)
-  window.ethereum.on("disconnect", async () => {
-    await disconnectMetamask();
-  });
+window.ethereum.on("disconnect", async () => {
+  await disconnectMetamask();
+});
 
-if (window.ethereum)
-  window.ethereum.on("accountsChanged", (accounts) => {
-    const oldWalletAddress = walletAddress;
-    walletAddress = accounts[0];
-    if (typeof walletAddress == "undefined") {
-      notifyUser("Metamask disconnected");
-      connect.src = "../assets/navbar/metamask-disconnected.png";
+window.ethereum.on("accountsChanged", (accounts) => {
+  const oldWalletAddress = walletAddress;
+  walletAddress = accounts[0];
+  if (typeof walletAddress == "undefined") {
+    notifyUser("Metamask disconnected");
+    connect.src = "../assets/navbar/metamask-disconnected.png";
+  }
+  else {
+    if (typeof oldWalletAddress == "undefined") {
+      notifyUser(`Metamask connected with address: ${walletAddress}`);
+      connect.src = "../assets/navbar/metamask-connected.png";
+    } else {
+      notifyUser(`Changed current address to: ${walletAddress}`);
     }
-    else {
-      if (typeof oldWalletAddress == "undefined") {
-        notifyUser(`Metamask connected with address: ${walletAddress}`);
-        connect.src = "../assets/navbar/metamask-connected.png";
-      } else {
-        notifyUser(`Changed current address to: ${walletAddress}`);
-      }
-    }
-  });
+  }
+});
 
 const metamaskURL = "https://metamask.io/download/"
 const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -72,7 +70,10 @@ connect.addEventListener("click", async () => {
     if(mobileUA.test(navigator.userAgent)) {
       window.open("https://metamask.app.link/dapp/fantacuties.com");
     } else {
-      window.open(metamaskURL);
+      notifyUser(
+        `Install <a href="${metamaskURL}" target="_blank" 
+        style="color:white;text-decoration:underline">Metamask</a> first!`
+      );
     }
   } else if (typeof walletAddress != "undefined") {
     notifyUser(`Metamask already connected with address ${walletAddress}`);
@@ -80,7 +81,7 @@ connect.addEventListener("click", async () => {
     await ethereum.request({method: 'eth_requestAccounts'})
       .catch((error) => {
         notifyUser(error.message);
-      })
+    });
   }
 });
 
@@ -111,10 +112,10 @@ const mint = document.querySelector("#mint");
 
 mint.addEventListener("click", async () => {
   if (typeof window.ethereum == "undefined") {
-    notifyUser(`Install Metamask first! ( 
-                <a href="${metamaskURL}" target="_blank" style="color:white;text-decoration:underline">
-                Click here</a> )`
-              );
+    notifyUser(
+      `Install <a href="${metamaskURL}" target="_blank" 
+      style="color:white;text-decoration:underline">Metamask</a> first!`
+    );
     return;
   }
   
@@ -138,32 +139,31 @@ mint.addEventListener("click", async () => {
     data: contractInterface.encodeFunctionData("publicMint", [tokenAmount])
   }
   
-  let isError = false;
+  let isReverted = false;
   await contract.estimateGas.publicMint(tokenAmount, {
     "value": ethers.utils.parseEther(ethers.utils.formatEther(`${txValue}`))
   })
     .catch((error) => {
+      isReverted = true;
       if(error.code == "INSUFFICIENT_FUNDS") {
         notifyUser("(╥﹏╥) Insufficient funds");
       } else {
         notifyUser(`(╥﹏╥) ${error.error.message.split(":").pop().trim()}`);
       }
-      isError = true;
-    });
-
-  if (isError) return;
+      return;
+  });
+  if (isReverted) return;
 
   await window.ethereum.request(
     {method: 'eth_sendTransaction', params: [tx]}
   )
-    .then((txHash)=>{
+    .then((txHash) => {
       notifyUser(
-        `(˶ᵔ ᵕ ᵔ˶) Yayy! Transaction completed. You can check it 
-         <u><a href="https://etherscan.io/tx/${txHash}" target="_blank" style="color:white;text-decoration:underline">
-         HERE</a></u>`
+        `(˶ᵔ ᵕ ᵔ˶) Yayy! Transaction completed. You can check it ` +
+        `<u><a href="https://etherscan.io/tx/${txHash}">here</a></u>`
       );
-    })
+  })
     .catch((error) => {
       notifyUser("(╥﹏╥) Something went wrong...");
-    });
+  });
 });

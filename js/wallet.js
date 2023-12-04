@@ -49,22 +49,24 @@ if (typeof window.ethereum != "undefined") {
   });
 }
 
-window.ethereum.on("accountsChanged", (accounts) => {
-  const oldWalletAddress = walletAddress;
-  walletAddress = accounts[0];
-  if (typeof walletAddress == "undefined") {
-    notifyUser("Metamask disconnected");
-    connect.src = "../assets/navbar/metamask-disconnected.png";
-  }
-  else {
-    if (typeof oldWalletAddress == "undefined") {
-      notifyUser(`Metamask connected with address: ${walletAddress}`);
-      connect.src = "../assets/navbar/metamask-connected.png";
-    } else {
-      notifyUser(`Changed current address to: ${walletAddress}`);
+if (typeof window.ethereum != "undefined") {
+  window.ethereum.on("accountsChanged", (accounts) => {
+    const oldWalletAddress = walletAddress;
+    walletAddress = accounts[0];
+    if (typeof walletAddress == "undefined") {
+      notifyUser("Metamask disconnected");
+      connect.src = "../assets/navbar/metamask-disconnected.png";
     }
-  }
-});
+    else {
+      if (typeof oldWalletAddress == "undefined") {
+        notifyUser(`Metamask connected with address: ${walletAddress}`);
+        connect.src = "../assets/navbar/metamask-connected.png";
+      } else {
+        notifyUser(`Changed current address to: ${walletAddress}`);
+      }
+    }
+  });
+}
 
 const metamaskURL = "https://metamask.io/download/"
 const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;

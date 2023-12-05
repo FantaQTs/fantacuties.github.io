@@ -68,14 +68,15 @@ if (typeof window.ethereum != "undefined") {
   });
 }
 
-const metamaskURL = "https://metamask.io/download/";
 const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-const deepLink = "https://metamask.app.link/dapp/fantacuties.com";
+const metamaskURL = mobileUA.test(navigator.userAgent) ? 
+  "https://metamask.app.link/dapp/fantacuties.com" : 
+  "https://metamask.io/download/";
 
 connect.addEventListener("click", async () => {
   if (typeof window.ethereum == "undefined") {
     if(mobileUA.test(navigator.userAgent)) {
-      window.open(deepLink);
+      window.open(metamaskURL);
     } else {
       notifyUser(
         `Install <a href="${metamaskURL}" target="_blank" 
@@ -119,17 +120,10 @@ const mint = document.querySelector("#mint");
 
 mint.addEventListener("click", async () => {
   if (typeof window.ethereum == "undefined") {
-	if(mobileUA.test(navigator.userAgent)) {
-	  notifyUser(
-	    `Install <a href="${deepLink}" target="_blank" 
-		 style="color:white;text-decoration:underline">Metamask</a> first!`
-	  )
-	} else {
-      notifyUser(
-	    `Install <a href="${metamaskURL}" target="_blank" 
-		 style="color:white;text-decoration:underline">Metamask</a> first!`
-	  )
-	};
+    notifyUser(
+      `Install <a href="${metamaskURL}" target="_blank" 
+      style="color:white;text-decoration:underline">Metamask</a> first!`
+	  );
     return;
   }
   

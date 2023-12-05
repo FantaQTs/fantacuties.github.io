@@ -123,7 +123,7 @@ mint.addEventListener("click", async () => {
     notifyUser(
       `Install <a href="${metamaskURL}" target="_blank" 
       style="color:white;text-decoration:underline">Metamask</a> first!`
-	  );
+    );
     return;
   }
   
